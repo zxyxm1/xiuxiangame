@@ -1,0 +1,13 @@
+{
+  "name": "xiuxian-game",
+  "version": "1.0.0",
+  "description": "天道来了个修仙公司 - Web版",
+  "type": "module",
+  "scripts": {
+    "dev": "npx http-server -p 8080 -c-1 -o",
+    "start": "npx http-server -p 8080 -c-1"
+  },
+  "keywords": ["game", "xiuxian", "canvas"],
+  "author": "",
+  "license": "MIT"
+}

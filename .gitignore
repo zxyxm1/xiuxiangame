@@ -1,0 +1,24 @@
+# 依赖目录
+node_modules/
+
+# 日志文件
+*.log
+npm-debug.log*
+
+# 编辑器配置
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 微信小程序私有配置(包含AppID等敏感信息)
+project.private.config.json
+
+# 构建产物
+dist/
+build/
+
+# 临时文件
+.cache/
+.temp/

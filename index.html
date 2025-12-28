@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <title>天道来了个修仙公司</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 音乐控制按钮 -->
+    <div id="music-toggle" title="开关音乐">🎵</div>
+    
+    <!-- 音频元素 -->
+    <audio id="bgMusic" loop>
+        <source src="./audio/music.mp3" type="audio/mpeg">
+    </audio>
+    
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+    </div>
+    <script type="module">
+        // 音乐控制功能
+        const bgMusic = document.getElementById('bgMusic');
+        const musicToggle = document.getElementById('music-toggle');
+        let isMusicPlaying = false;
+        
+        // 音乐开关按钮点击事件
+        musicToggle.addEventListener('click', () => {
+            if (isMusicPlaying) {
+                bgMusic.pause();
+                musicToggle.textContent = '🔇'; // 静音图标
+                musicToggle.classList.add('muted');
+            } else {
+                bgMusic.play().catch(err => {
+                    console.log('音乐播放失败:', err);
+                });
+                musicToggle.textContent = '🎵'; // 音乐图标
+                musicToggle.classList.remove('muted');
+            }
+            isMusicPlaying = !isMusicPlaying;
+        });
+        
+        // 等待DOM加载完成
+        window.addEventListener('DOMContentLoaded', async () => {
+            try {
+                // 动态导入Main模块
+                const module = await import('./js/main.js');
+                const Main = module.default;
+                const game = new Main();
+                
+                // 监听开始游戏事件,自动播放音乐
+                game.gameInfo.once('startGame', () => {
+                    // 延迟一点播放,绕过浏览器的自动播放限制
+                    setTimeout(() => {
+                        bgMusic.play().then(() => {
+                            isMusicPlaying = true;
+                            musicToggle.textContent = '🎵';
+                            musicToggle.classList.remove('muted');
+                        }).catch(err => {
+                            console.log('自动播放失败,请手动点击音乐按钮:', err);
+                        });
+                    }, 100);
+                });
+            } catch (err) {
+                console.error('游戏加载失败:', err);
+            }
+        });
+    </script>
+</body>
+</html>
