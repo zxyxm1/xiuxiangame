@@ -25,7 +25,7 @@
 
 ### 在线游玩
 
-直接访问: [游戏链接](https://zxyxm1.github.io/xiuxiangame/) *(需配置GitHub Pages)*
+直接访问: [游戏链接](https://zxyxm1.github.io/xiuxiangame/) 
 
 ### 本地运行
 
