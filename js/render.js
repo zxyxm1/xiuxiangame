@@ -11,7 +11,7 @@ if (!canvas) {
 
 // 加载背景图片
 const backgroundImage = new Image();
-backgroundImage.src = './images/image.png';
+backgroundImage.src = './images/image.jpg';
 window.GameGlobal.backgroundImage = backgroundImage;
 
 // 获取设备像素比(解决高分辨率屏幕模糊问题)
